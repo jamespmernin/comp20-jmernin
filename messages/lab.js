@@ -1,5 +1,5 @@
 var xmlhttp = new XMLHttpRequest();
-var url = "data.json";
+var url = "http://messagehub.herokuapp.com/messages.json";
 
 function parse() {
 
