@@ -3,6 +3,8 @@ Chow
 Web Programming
 10/17/2015
 
+------
+
 Correctly Implemented:
 -Successfully modified lab.js to print messages to the screen
 -Successfully did so without any errors in the console
@@ -13,5 +15,10 @@ Incorrectly Implemented:
 Hours Spent: 6 (mainly due to technical difficulties, the assignment on its own
 took no more than 1 hour total)
 
+------
+
 Is it possible to request the data from a different origin or from your local
 machine from using XMLHttpRequest? Why or why not?
+
+According to the results of Part 2 of the lab, it is possible to request data
+from a remote URL using XMLHttpRequest. 
