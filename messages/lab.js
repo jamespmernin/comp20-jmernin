@@ -1,21 +1,24 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "data.json";
 
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	var myArr = JSON.parse(xmlhttp.responseText);
-	printOut(myArr);
-    }
-}
+function parse {
 
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	    var myArr = JSON.parse(xmlhttp.responseText);
+	    printOut(myArr);
+        }
+    }
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
 
 function printOut(arr) {
     var out = "";
     var i;
     for(i = 0; i < arr.length; i++) {
-	out += '<p>' + arr[i].content + ' ' + arr[i].username + '</p>';
+        out += '<p>' + arr[i].content + ' ' + arr[i].username + '</p>';
     }
-document.getElementById("messages").innerHTML = out;
+    document.getElementById("messages").innerHTML = out;
 }
