@@ -1,7 +1,7 @@
 var xmlhttp = new XMLHttpRequest();
 var url = "data.json";
 
-function parse {
+function parse() {
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
