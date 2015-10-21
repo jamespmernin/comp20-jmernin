@@ -2,16 +2,20 @@
 
 <head>
 	<title>James Mernin Assignment 2</title>
+        <meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script>
+                var x = document.getElementById("mapchat");
 		function getMyPos() {
-			myLoc = navigator.geolocation;
-			myPos = myLoc.getCurrentPosition(function() {
-				var crd = myPos.coords;
-				console.log('Latitude: ' + crd.latitude);
-				console.log('Longitude: ' + crd.longitude);
-			});
+		    myLoc = navigator.geolocation;
+		    myPos = myLoc.getCurrentPosition(getPosition)
+		};
+
+                function getPosition(position) {
+		    var crd = position.coords;
+		    console.log('Latitude: ' + crd.latitude);
+		    console.log('Longitude: ' + crd.longitude);
 		};
 	</script>
 
