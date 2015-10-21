@@ -2,16 +2,23 @@
 
 <head>
 	<title>James Mernin Assignment 2</title>
-	<link rel="stylesheet" type="text/css" href="mystyle.css" />
+	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script>
-
+		function getMyPos() {
+			myLoc = navigator.geolocation;
+			myPos = myLoc.getCurrentPosition(function() {
+				var crd = myPos.coords;
+				console.log('Latitude: ' + crd.latitude);
+				console.log('Longitude: ' + crd.longitude);
+			});
+		};
 	</script>
 
 </head>
 
-<body>
-	<div id=""></div>
+<body onload="getMyPos()">
+	<div id="mapchat"></div>
 	<h1>Map Chat</h1>
 </body>
 
