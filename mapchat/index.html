@@ -6,7 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script>
-                var x = document.getElementById("mapchat");
+        var x = document.getElementById("mapchat");
+
 		function getMyPos() {
 		    myLoc = navigator.geolocation;
 		    myPos = myLoc.getCurrentPosition(getPosition)
@@ -29,9 +30,11 @@
 
 		    xml_http.onreadystatechange = function() {
 		    	if (xml_http.readyState == 4 && xml_http.status = 200) {
-		    		
+		    		alert(xml_http.responseText);
 		    	};
 		    };
+
+		    xml_http.send(params);
 		};
 
 
