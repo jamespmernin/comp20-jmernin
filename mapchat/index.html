@@ -9,23 +9,25 @@
         var x = document.getElementById("mapchat");
 
         function doMapChat() {
-        	myPos = getPosition();
-        	sendLoc(myPos);
+        	myCoords = getCoords();
+        	sendLoc(myCoords);
         }
 
-		function getPosition() {
+		function getCoords() {
 		    myLoc = navigator.geolocation;
 		    myPos = myLoc.getCurrentPosition(function(myPos) {
 		    	var crd = myPos.coords;
 		    	console.log('Latitude: ' + crd.latitude);
 		    	console.log('Longitude: ' + crd.longitude);
 			});
+
+			return crd;
 		};
 
-		function sendLoc(myPos) {
+		function sendLoc(crd) {
 			var xmlhttp = new XMLHttpRequest();
 			var url = "http://tuftsdev.github.io/comp20-username/mapchat";
-			var params = "login=KeithRumfelt&lat=" + myPos.coords.latitude + "&lng=" + myPos.coords.longitude + "&message=Here I am!"
+			var params = "login=KeithRumfelt&lat=" + crd.latitude + "&lng=" + crd.longitude + "&message=Here I am!";
 
 			xmlhttp.open("POST", url, true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
