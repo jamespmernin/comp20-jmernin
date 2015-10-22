@@ -9,13 +9,13 @@
         var x = document.getElementById("mapchat");
 
         function doMapChat() {
-        	myCoords = getCoords();
+        	var myCoords = getCoords();
         	sendLoc(myCoords);
         }
 
 		function getCoords() {
-		    myLoc = navigator.geolocation;
-		    myPos = myLoc.getCurrentPosition(function(myPos) {
+		    var myLoc = navigator.geolocation;
+		    var myPos = myLoc.getCurrentPosition(function(myPos) {
 		    	var crd = myPos.coords;
 		    	console.log('Latitude: ' + crd.latitude);
 		    	console.log('Longitude: ' + crd.longitude);
