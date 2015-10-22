@@ -22,20 +22,20 @@
 		};
 
 		function sendLoc(position) {
-			var xml_http = new XMLHttpRequest();
+			var xmlhttp = new XMLHttpRequest();
 			var url = "http://tuftsdev.github.io/comp20-username/mapchat";
 			var params = "login=KeithRumfelt&lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&message=Here I am!"
 
-			xml_http.open("POST", url, true);
-			xml_http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.open("POST", url, true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-		    xml_http.onreadystatechange = function() {
-		    	if (xml_http.readyState == 4 && xml_http.status == 200) {
-		    		alert(xml_http.responseText);
+			xmlhttp.onreadystatechange = function {
+		    	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		    		alert(xmlhttp.responseText);
 		    	};
 		    };
 
-		    xml_http.send(params);
+		    xmlhttp.send(params);
 		};
 	</script>
 
