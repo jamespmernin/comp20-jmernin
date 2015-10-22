@@ -14,15 +14,15 @@
         }
 
 		function getCoords() {
-		    var myLoc = navigator.geolocation;
-		    var myPos = myLoc.getCurrentPosition(function(myPos) {
-		    	var crd = myPos.coords;
-		    	console.log('Latitude: ' + crd.latitude);
-		    	console.log('Longitude: ' + crd.longitude);
-			});
-
+		    var myPos = navigator.geolocation.getCurrentPosition(success);
 			return myPos.coords;
 		};
+
+		function success() {
+			var crd = myPos.coords;
+		    console.log('Latitude: ' + crd.latitude);
+		    console.log('Longitude: ' + crd.longitude);
+		}
 
 		function sendLoc(crd) {
 			var xmlhttp = new XMLHttpRequest();
