@@ -16,7 +16,7 @@
 		function getPosition() {
 		    myLoc = navigator.geolocation;
 		    myPos = myLoc.getCurrentPosition(function() {
-		    	var crd = position.coords;
+		    	var crd = myPos.coords;
 		    	console.log('Latitude: ' + crd.latitude);
 		    	console.log('Longitude: ' + crd.longitude);
 			});
