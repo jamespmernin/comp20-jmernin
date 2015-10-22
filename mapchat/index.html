@@ -14,8 +14,7 @@
         }
 
 		function getCoords() {
-		    var myPos = navigator.geolocation.getCurrentPosition(success);
-			return myPos.coords;
+		    return navigator.geolocation.getCurrentPosition(success).coords;
 		};
 
 		function success() {
