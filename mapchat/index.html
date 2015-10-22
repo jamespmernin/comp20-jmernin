@@ -8,17 +8,18 @@
 	<script>
         var x = document.getElementById("mapchat");
 
-		function getMyPos() {
+        function doMapChat() {
+        	myPos = getPosition();
+        	sendLoc(myPos);
+        }
+
+		function getPosition() {
 		    myLoc = navigator.geolocation;
-		    myPos = myLoc.getCurrentPosition(getPosition)
-
-		    sendLoc(myPos)
-		};
-
-        function getPosition(position) {
-		    var crd = position.coords;
-		    console.log('Latitude: ' + crd.latitude);
-		    console.log('Longitude: ' + crd.longitude);
+		    myPos = myLoc.getCurrentPosition(function() {
+		    	var crd = position.coords;
+		    	console.log('Latitude: ' + crd.latitude);
+		    	console.log('Longitude: ' + crd.longitude);
+			});
 		};
 
 		function sendLoc(position) {
@@ -29,7 +30,7 @@
 			xmlhttp.open("POST", url, true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-			xmlhttp.onreadystatechange = function {
+			xmlhttp.onreadystatechange = function() {
 		    	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		    		alert(xmlhttp.responseText);
 		    	};
@@ -41,7 +42,7 @@
 
 </head>
 
-<body onload="getMyPos()">
+<body onload="doMapChat()">
 	<div id="mapchat"></div>
 	<h1>Map Chat</h1>
 </body>
