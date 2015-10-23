@@ -14,14 +14,15 @@
         }
 
 		function getCoords() {
-		    return navigator.geolocation.getCurrentPosition(success).coords;
+		    myCoords = navigator.geolocation.getCurrentPosition(success).coords;
+		    return myCoords;
 		};
 
 		function success(myPos) {
 			var crd = myPos.coords;
 		    console.log('Latitude: ' + crd.latitude);
 		    console.log('Longitude: ' + crd.longitude);
-		}
+		};
 
 		function sendLoc(crd) {
 			var xmlhttp = new XMLHttpRequest();
