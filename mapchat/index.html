@@ -6,15 +6,20 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script>
-
         function doMapChat() {
         	var myCoords = getCoords();
         	sendLoc(myCoords);
-        }
+        	getMap(myCoords);
+        };
 
 		function getCoords() {
+			if (navigator.geolocation) {
 		    myCoords = navigator.geolocation.getCurrentPosition(success).coords;
 		    return myCoords;
+			};
+			else {
+				alert("Geolocation is not supported.");
+			};
 		};
 
 		function success(myPos) {
@@ -39,12 +44,37 @@
 
 		    xhr.send(params);
 		};
+
+		function getMap(myCoords) {
+			var me = new google.maps.LatLng(myCoords.latitude, myCoords.longitude);
+			myOptions = {
+				zoom: 13,
+				center: me,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+			map.panTo(me);
+
+			marker = new google.maps.Marker({
+				position: me,
+				title: "Here I am!"
+			});
+			marker.setMap(map);
+
+			var infoWindow = new google.maps.InfoWindow();
+
+			google.maps.event.addListener(marker, 'click', function(){
+				infoWindow.setContent(marker.title);
+				infoWindow.open(map, marker);
+			});
+		};
 	</script>
 
 </head>
 
 <body onload="doMapChat()">
-	<h1>Map Chat</h1>
+	<div id="map_canvas"></div>
 </body>
 
 </html>
