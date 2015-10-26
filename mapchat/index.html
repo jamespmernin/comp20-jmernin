@@ -10,13 +10,14 @@
         	var myCoords = getCoords();
         	sendLoc(myCoords);
         	getMap(myCoords);
+        	getOthers();
         };
 
 		function getCoords() {
 			if (navigator.geolocation) {
 		    myCoords = navigator.geolocation.getCurrentPosition(success).coords;
 		    return myCoords;
-			};
+			}
 			else {
 				alert("Geolocation is not supported.");
 			};
