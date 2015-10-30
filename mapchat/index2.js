@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-
-<head>
-	<title>James Mernin Assignment 2</title>
-    <meta charset="UTF-8">
-    <script src="https://maps.google.com/maps/api/js?sensor=true"></script>
-	<link rel="stylesheet" type="text/css" href="style.css" />
-
-	<script>
-        function doMapChat() {
+function doMapChat() {
 			if (navigator.geolocation) {
 		    	navigator.geolocation.getCurrentPosition(success);
 			}
@@ -106,20 +97,3 @@
 
 			return d * 0.621371;
 		}
-	</script>
-
-</head>
-
-<body onload="doMapChat()">
-	<div id="map_canvas"></div>
-</body>
-
-</html>
-
-<!-- TODO: Get all the locations and messages of people in class (make a request for data, Haversine needed to determine how far away from me people are) I also need a favicon to post locally I think, pretty sure we're not sending that over JSON. I also need an info window with my login on it.
-
-So in other words we have the following list:
-
-> Get the list of everyone else's data from the source
-> Favicon and info window with personal information
-> Info window based on data that gives login, message, miles away. Two are given by the JSON directly, one is given by the lat/lng and the Haversine formula -->
