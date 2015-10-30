@@ -44,7 +44,7 @@
 				center: me,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
-			
+
 			var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
 			map.panTo(me);
@@ -64,10 +64,10 @@
 				infoWindow.open(map, marker);
 			});
 
-			getOthers(xhr, url, myLat, myLng);
+			getOthers(map, xhr, url, myLat, myLng);
 		};		
 
-		function getOthers(xhr, url, myLat, myLng) {
+		function getOthers(map, xhr, url, myLat, myLng) {
 			xhr.open("GET", url, true);
 			var otherLocs = JSON.parse(xhr.responseText);
 
