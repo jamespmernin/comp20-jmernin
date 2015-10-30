@@ -7,22 +7,24 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script>
-        function doMapChat() {
-			if (navigator.geolocation) {
+        function doMapChat () {
+			if (navigator.geolocation) { 
 		    	navigator.geolocation.getCurrentPosition(success);
-			}
+		    }
+			
 			else {
 				alert("Geolocation is not supported.");
 			}
-		}
+		};
+		
 
-		function success(myPos) {
+		function success(myPos) { 
 			var myLat = myPos.coords.latitude;
 			var myLng = myPos.coords.longitude;
 			sendLoc(myLat, myLng);
-		}
+		};		
 
-		function sendLoc(myLat, myLng) {
+		function sendLoc(myLat, myLng) { 
 			var xhr = new XMLHttpRequest();
 			var url = "https://secret-about-box.herokuapp.com/sendLocation";
 
@@ -32,28 +34,30 @@
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		    xhr.send(params);
 		    getMap(xhr, url, myLat, myLng);
-		}
+		};
+		
 
-		function getMap(xhr, url, myLat, myLng) {
+		function getMap(xhr, url, myLat, myLng) { 
 			var me = new google.maps.LatLng(myLat, myLng);
-			myOptions = {
+			var mapOptions = {
 				zoom: 17,
 				center: me,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
-			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			
+			var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
 			map.panTo(me);
 			var image = "icon2.jpg";
 
-			marker = new google.maps.Marker({
+			var marker = new google.maps.Marker({
 				position: me,
 				title: "Here I am!",
 				icon: image
 			});
 			marker.setMap(map);
 
-			var infoWindow = new google.maps.InfoWindow();
+			var infoWindow = new google.maps.InfoWindow;
 
 			google.maps.event.addListener(marker, 'click', function(){
 				infoWindow.setContent(marker.title);
@@ -61,7 +65,7 @@
 			});
 
 			getOthers(xhr, url, myLat, myLng);
-		}
+		};		
 
 		function getOthers(xhr, url, myLat, myLng) {
 			xhr.open("GET", url, true);
@@ -88,8 +92,8 @@
 			}
 		}
 
-		function getDist(myLat, myLng, theirLat, theirLng) {
-			Number.prototype.toRad = function() {
+		function getDist(myLat, myLng, theirLat, theirLng) { 
+			Number.prototype.toRad = function(){
 			   return this * Math.PI / 180;
 			};
 
@@ -101,7 +105,7 @@
 			var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
 			                Math.cos(myLat.toRad()) * Math.cos(theirLat.toRad()) * 
 			                Math.sin(dLon/2) * Math.sin(dLon/2);  
-			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+			var c = 2 * Math.atan2(Math.sqrta, Math.sqrt1-a); 
 			var d = R * c;
 
 			return d * 0.621371;
@@ -110,13 +114,13 @@
 
 </head>
 
-<body onload="doMapChat()">
+<body onload="doMapChat">
 	<div id="map_canvas"></div>
 </body>
 
 </html>
 
-<!-- TODO: Get all the locations and messages of people in class (make a request for data, Haversine needed to determine how far away from me people are) I also need a favicon to post locally I think, pretty sure we're not sending that over JSON. I also need an info window with my login on it.
+<!-- TODO: Get all the locations and messages of people in class make a request for data, Haversine needed to determine how far away from me people are I also need a favicon to post locally I think, pretty sure we're not sending that over JSON. I also need an info window with my login on it.
 
 So in other words we have the following list:
 
