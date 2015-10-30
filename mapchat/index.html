@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script>
-        function doMapChat () {
+        function doMapChat() {
 			if (navigator.geolocation) { 
 		    	navigator.geolocation.getCurrentPosition(success);
 		    }
@@ -57,7 +57,7 @@
 			});
 			marker.setMap(map);
 
-			var infoWindow = new google.maps.InfoWindow;
+			var infoWindow = new google.maps.InfoWindow();
 
 			google.maps.event.addListener(marker, 'click', function(){
 				infoWindow.setContent(marker.title);
@@ -114,7 +114,7 @@
 
 </head>
 
-<body onload="doMapChat">
+<body onload="doMapChat()">
 	<div id="map_canvas"></div>
 </body>
 
