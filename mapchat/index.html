@@ -29,10 +29,13 @@
 			var url = "https://secret-about-box.herokuapp.com/sendLocation";
 
 			var params = "login=KeithRumfelt&lat=" + myLat + "&lng=" + myLng + "&message=Here I am!";
-
-			xhr.open("POST", url, true);
-			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhr.send(params);
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					xhr.open("POST", url, true);
+					xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					xhr.send(params);
+				}
+			};
 			getMap(xhr, url, myLat, myLng);
 		};
 		
@@ -52,7 +55,7 @@
 
 			var marker = new google.maps.Marker({
 				position: me,
-				title: "Here I am!",
+				title: "KeithRumfelt",
 				icon: image
 			});
 			marker.setMap(map);
@@ -68,8 +71,14 @@
 		};		
 
 		function getOthers(map, xhr, url, myLat, myLng) {
-			xhr.open("GET", url, true);
-			var otherLocs = JSON.parse(xhr.responseText);
+			var otherLocs = []
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					xhr.open("GET", url, true);
+					xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					otherLocs = JSON.parse(xhr.responseText);
+				}
+			};
 
 			for (i = 0; i < otherLocs.length; i++) {
 				theirLat = otherLocs[i].lat;
@@ -97,7 +106,7 @@
 			   return this * Math.PI / 180;
 			};
 
-			var R = 6371; // km 
+			var R = 6371;
 			var x1 = theirLat-myLat;
 			var dLat = x1.toRad();  
 			var x2 = theirLng-myLng;
