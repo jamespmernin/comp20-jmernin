@@ -9,13 +9,15 @@
 	  $(document).ready(function() {
 		$(document).keypress(function (e) {
 	  		if(e.which == 13) {
-	  			var message = $("input#msg").val();
+	  			var message = $("#msg").val();
 	  			var dataString = "<p>" + message + "</p>"
 		  		$.post("index.html", dataString, function() {
 		  			$("#log").html(dataString)
+		  			localStorage.set(dataString) //???
 		  		});
 		  	};
 		});
+		//On page refresh, get all of the messages from localStorage and print
 	});
 	</script>
 </head>
