@@ -7,18 +7,25 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
 	  $(document).ready(function() {
-		$(document).keypress(function (e) {
-	  		if(e.which == 13) {
+		$(document).keypress(function (event) {
+	  		if(event.which == 13) {
 	  			var message = $("#msg").val();
-	  			var dataString = "<p>" + message + "</p>"
-		  		$.post("index.html", dataString, function() {
-		  			$("#log").html(dataString)
-		  			localStorage.set(dataString) //???
-		  		});
-		  	};
+	  			var date = function() {
+	  				var rawDate = new Date(Date.now());
+	  				var weekday = 
+	  				var month = rawDate.getMonth()
+	  				var day = rawDate.getDate()
+	  				var year = rawDate.getFullYear()
+	  				var hour = rawDate.getHours()
+	  				var minute = rawDate.getMinutes()
+	  				var second = rawDate.getSeconds()
+	  			};
+		  		$("#log").html(message);
+		  		//localStorage.setItem(message)
+		  		};
+		  	});
 		});
 		//On page refresh, get all of the messages from localStorage and print
-	});
 	</script>
 </head>
 
