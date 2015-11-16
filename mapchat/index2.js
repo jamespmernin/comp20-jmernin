@@ -15,7 +15,7 @@ function doMapChat() {
 
 		function sendLoc(myLat, myLng) {
 			var xhr = new XMLHttpRequest();
-			var url = "https://secret-about-box.herokuapp.com/sendLocation";
+			var url = "/../../node-js-getting-started/index.js";
 
 			var params = "login=KeithRumfelt&lat=" + myLat + "&lng=" + myLng + "&message=Here I am!";
 
