@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Programming Assignment 4</title>
+</head>
+<body>
+	<h1>Web Programming Assignment 4</h1>
+	<h2>James Mernin</h2>
+	<p>Introduction: The web application takes in geographical information and displays it on screen. It does so by allowing users to post their credentials with a post method, and then it returns a list of all of the previous entries.</p>
+	<p>Methodology: To test the application, the only external tool I used was curl to input data. I was able to expose the first vulnerability through manual testing, and then delved into the source code to identify two other locations where this vulnerability could be exploited.</p>
+	<p>Abstract of Findings: The three findings were actually one finding that was exploitable in three sections of the data. The latitude, longitude, and message data fields were all vulnerable to an attack called cross-site scripting. In this attack, it is possible to post malicious HTML or even Javascript as input into the data fields, thereby changing the website's appearance or even redirecting users to entirely different pages.</p>
+	<p>Issues Found: The issues were all of the cross-site scripting variety found in three separate locations.</p>
+	<ul>
+		<li>Issue - Cross-Site Scripting</li>
+		<li>Location - The sendLocation page, specifically in the fields where 1. latitude, 2. longitude, and 3. message are entered.</li>
+		<li>Severity of issue - According to OWASP, cross-site scripting "allows attackers to execute scripts in the victim's browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites." The attack is quite severe because of these possibilities.</li>
+		<li>Description of Issue - I found the issue initially through knowledge of common cross-site scripting attacks, and saw if I could inject HTML through the message data field using curl. I then looked at the source code and found that latitude and longitude had similar issues. The main problem is that the code accepts all types of string values and prints to the screen using HTML, so that the user inputs are modifying the page directly.</li>
+		<li>Proof of Vulnerability - This was about the least malicious thing I could do: <img src="security.jpg" /></li>
+		<li>Resolution - You can escape characters that can cause problems like the two carats "<" and ">". Converting them to different forms will render them unable to modify HTML and solve the security threat.</li>
+	</ul>
+	<p>Conclusion - Cross-site scripting is dangerous but preventable, so in general it is best practice to identify other such threats and resolve them to protect user data.</p>
+</body>
+</html>
